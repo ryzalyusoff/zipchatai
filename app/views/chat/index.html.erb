@@ -1,0 +1,19 @@
+<div id="chatbubble" data-controller="chat">
+  <div id="messages" data-chat-target="messages">
+    <div class="message system">
+      <div class="message-content">👋 Hello! How can we help you today?</div>
+    </div>
+  </div>
+
+  <%= form_with url: chat_messages_path, method: :post, data: { turbo_stream: true, action: "turbo:submit-end->chat#afterSubmit" }, class: "input-container", local: false do |f| %>
+    <%= f.text_area :content,
+        id: "message-input",
+        class: "message-input",
+        placeholder: "Type your message...",
+        data: {
+          chat_target: "input",
+          action: "keydown->chat#handleKeyPress"
+        } %>
+    <%= f.submit "Send", id: "send-button", class: "send-button" %>
+  <% end %>
+</div>

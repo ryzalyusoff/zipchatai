@@ -75,5 +75,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   # Allow ngrok tunnel host for OAuth callbacks
-  config.hosts << "d990-210-195-225-187.ngrok-free.app"
+  config.hosts << ENV['HOST_MIN'] if ENV['HOST_MIN'].present?
 end
