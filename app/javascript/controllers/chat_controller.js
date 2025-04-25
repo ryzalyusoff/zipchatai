@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "messages"]
+  static targets = ["messages", "input"]
 
   connect() {
     console.log("Chat controller connected")
@@ -14,23 +14,18 @@ export default class extends Controller {
     }
   }
 
-  afterSubmit() {
-    this.inputTarget.value = ""
+  submitStart(event) {
+    const content = this.inputTarget.value.trim()
+    if (content === "") {
+      event.preventDefault() 
+      return
+    }
 
-    setTimeout(() => {
-      fetch("/chat_replies", {
-        method: "POST",
-        headers: {
-          "Accept": "text/vnd.turbo-stream.html",
-          "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-        }
-      })
-        .then(response => response.text())
-        .then(html => {
-          const fragment = document.createRange().createContextualFragment(html)
-          document.body.appendChild(fragment)
-        })
-    }, 1000)
+    const div = document.createElement("div")
+    div.className = "message user"
+    div.innerHTML = `<div class="message-content">${content}</div>`
+    this.messagesTarget.appendChild(div)
+
+    this.inputTarget.value = ""
   }
 }
