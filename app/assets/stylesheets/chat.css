@@ -4,13 +4,40 @@
   height: 100%;
   padding: 1rem;
   box-sizing: border-box;
-  background-color: white;
+  background-color: transparent;
   border-radius: 12px;
+  visibility: visible !important; /* Ensure visibility */
+  opacity: 1 !important; /* Ensure opacity */
+  position: relative; /* Ensure positioning context */
+  z-index: 1000; /* High z-index to avoid being obscured */
+}
+
+#minimized-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.open-button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#maximized-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 #messages {
-  height: 400px;
+  flex: 1;
   overflow-y: auto;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -59,4 +86,42 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.close-button {
+  padding: 0.5rem 1rem;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.send-button-2 {
+  padding: 0.5rem 1rem;
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#chatbubble #minimized-view {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#chatbubble #maximized-view {
+  display: none !important;
+}
+
+#chatbubble iframe {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 224px !important;
+  height: 72px !important;
 }
