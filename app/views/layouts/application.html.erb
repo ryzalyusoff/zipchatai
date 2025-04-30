@@ -1,82 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ZipchatAI Support</title>
-  <%= javascript_include_tag "chat_app", defer: true %>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
+<html>
+  <head>
+    <title><%= content_for(:title) || "Zipchatai" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-    #chat-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
+    <%= yield :head %>
 
-    #chatbox {
-      display: none;
-      position: absolute;
-      bottom: 50px;
-      right: 10px;
-      width: 350px;
-      height: 400px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      z-index: 100;
-      overflow: hidden;
-    }
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    #open-chat {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      padding: 10px 20px;
-      background: #000;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      z-index: 200;
-    }
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
 
-    .chat-header {
-      background: #f5f5f5;
-      padding: 10px;
-      font-weight: bold;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
 
-    .chat-messages {
-      height: 300px;
-      overflow-y: auto;
-      padding: 10px;
-      background: #fafafa;
-    }
-  </style>
-</head>
+    <%= javascript_importmap_tags %>
+    <%= turbo_include_tags %>
 
-<body>
-  <div id="chat-container">
-    <div id="chatbox">
-      <div class="chat-header">Chat Support</div>
-      <div class="chat-messages">
-        <div>Hello 👋, how can we assist you today?</div>
-      </div>
-    </div>
+    <script src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/app-bridge-checkout.js"></script>
+  </head>
 
-    <button id="open-chat">Chat with us</button>
-  </div>
-</body>
+  <body>
+    <%= yield %>
+  </body>
 </html>
+

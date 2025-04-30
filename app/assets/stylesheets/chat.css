@@ -1,43 +1,38 @@
+.hidden {
+  display: none;
+}
+
 #chatbubble {
-  font-family: sans-serif;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-  background-color: transparent;
-  border-radius: 12px;
-  visibility: visible !important; /* Ensure visibility */
-  opacity: 1 !important; /* Ensure opacity */
-  position: relative; /* Ensure positioning context */
-  z-index: 1000; /* High z-index to avoid being obscured */
-}
-
-#minimized-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.open-button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 1rem;
-  background-color: #111;
+  font-family: arial, sans-serif;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 1rem;
+  position: fixed;
+  bottom: 66px;
+  right: 17px;
+  width: 360px;
+  height: 516px;
+  z-index: 9999;
+}
+
+#open-chat {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background: #000;
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-}
-
-#maximized-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  z-index: 200;
 }
 
 #messages {
-  flex: 1;
+  height: 400px;
   overflow-y: auto;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -74,9 +69,11 @@
 
 .message-input {
   flex: 1;
+  font-size: 14px;
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-family: arial, sans-serif;
 }
 
 .send-button {
@@ -86,42 +83,4 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.close-button {
-  padding: 0.5rem 1rem;
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.send-button-2 {
-  padding: 0.5rem 1rem;
-  background-color: #111;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-}
-
-#chatbubble #minimized-view {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-#chatbubble #maximized-view {
-  display: none !important;
-}
-
-#chatbubble iframe {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: 224px !important;
-  height: 72px !important;
 }

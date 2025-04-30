@@ -1,15 +1,5 @@
-<div id="chatbubble" data-controller="chat">
-  <!-- Minimized View: Shown when chat is small -->
-  <div id="minimized-view" style="display: none;">
-    <button id="open-chat" class="open-button">Chat with us</button>
-  </div>
-
-  <!-- Maximized View: Shown when chat is large -->
-  <div id="maximized-view" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-      <h3 style="margin: 0;">Chat Support</h3>
-      <button id="close-chat" class="close-button">Close</button>
-    </div>
+<div data-controller="chat">
+  <div id="chatbubble" data-chat-target="chatbubble" class="hidden">
     <div id="messages" data-chat-target="messages">
       <div class="message system">
         <div class="message-content">👋 Hello! How can we help you today?</div>
@@ -36,4 +26,6 @@
       <%= f.submit "Send", class: "send-button" %>
     <% end %>
   </div>
+
+  <button id="open-chat" data-action="click->chat#handleToggle">Chat with us</button>
 </div>
